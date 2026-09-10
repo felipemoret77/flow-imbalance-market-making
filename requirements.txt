@@ -1,0 +1,4 @@
+# Minimal dependencies for the manuscript's numerical and plotting pipeline.
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7

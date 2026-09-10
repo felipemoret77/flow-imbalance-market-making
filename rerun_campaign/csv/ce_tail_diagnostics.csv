@@ -1,0 +1,5 @@
+policy,ce,ess,max_weight_share,ce_batch_std
+Signal-blind_Gaussian_GLFT,953.474,7.8,0.25216,133.41
+I-aware_RHJB,1841.654,246.7,0.02203,21.77
+cubic-skew_refined_ansatz,1833.907,72.8,0.08982,35.66
+I-aware_galerkin_ansatz,1835.718,144.6,0.06140,26.08

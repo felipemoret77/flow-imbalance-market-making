@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite the paper below."
+title: "Market Making with Persistent Flow Imbalance and Alpha"
+type: software
+authors:
+  - family-names: "Moret"
+    given-names: "Felipe"
+    affiliation: "Scuola Normale Superiore, Pisa"
+  - family-names: "Lillo"
+    given-names: "Fabrizio"
+    affiliation: "Scuola Normale Superiore, Pisa"
+abstract: >-
+  Adapts the CARA/GLFT market-making benchmark to persistent order flow through
+  three increasingly realistic models: a persistent order-flow imbalance with a
+  martingale reference price, a fast-alpha model in which the imbalance
+  generates a short-lived price drift, and a slow-regime extension that
+  separates transient imbalance from persistent directional pressure.  Each
+  model keeps the tractable inventory structure of GLFT and yields closed-form
+  quoting approximations that skew the benchmark quotes in response to observed
+  flow; common-path simulations compare them with the numerical reduced HJB
+  policies.
+keywords:
+  - market making
+  - order-flow imbalance
+  - adverse selection
+  - Hamilton-Jacobi-Bellman
+  - Cole-Hopf
+  - regime switching
+license: MIT
+repository-code: "https://github.com/felipemoret77/flow-imbalance-market-making"

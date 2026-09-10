@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.mplconfig/
+
+# LaTeX build artifacts
+paper/*.pdf
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+
+# Regenerable engine outputs (the committed inputs are CSV/JSON/NPZ; the
+# manuscript figures live in paper/images_final/)
+imagens_tex/**/*.png
+imagens_tex/**/*.pdf
+*.pkl
+*_sim_cache*
+
+# OS cruft
+.DS_Store

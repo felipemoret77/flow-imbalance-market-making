@@ -1,0 +1,5 @@
+contrast,mean_diff,paired_se,ci95_low,ci95_high,paired_corr
+I over GLFT,4000.8353,4.7816,3991.4634,4010.2072,0.9235
+alpha over I,1725.7452,3.9990,1717.9073,1733.5832,-0.6903
+sc-cubic vs RHJB,-0.8347,1.0760,-2.9436,1.2742,0.8734
+galerkin vs RHJB,-19.5459,1.0802,-21.6631,-17.4287,0.8687

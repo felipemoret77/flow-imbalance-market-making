@@ -1,0 +1,4 @@
+contrast,mean_diff,paired_se,ci95_low,ci95_high,paired_corr
+I over GLFT,4435.0409,5.2465,4424.7577,4445.3240,0.9297
+alpha over I,1967.2092,4.1883,1959.0001,1975.4183,-0.6970
+regime over alpha/I (Delta_R),175.0722,1.8064,171.5317,178.6128,0.7721

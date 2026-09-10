@@ -1,0 +1,5 @@
+form,pooled_ask_bid_depth_rmse
+sc_cubic,0.103067
+regime_gated_cubic_ablation,0.250922
+galerkin,0.646748
+affine,0.516040

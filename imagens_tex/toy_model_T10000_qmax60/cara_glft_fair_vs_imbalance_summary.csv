@@ -1,0 +1,3 @@
+scenario,terminal_pnl_mean,terminal_pnl_std,avg_abs_lifetime_inventory,lifetime_q01,lifetime_q99
+GLFT, fair environment,3268.203895,101.5047294,2.446258319,-7,7
+GLFT, imbalanced I-environment,2407.647431,575.1442566,15.52472001,-39,39
