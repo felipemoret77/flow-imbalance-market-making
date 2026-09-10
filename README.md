@@ -79,9 +79,8 @@ make regen     # rerun the three engines and the Monte Carlo campaign (hours)
   closed-form comparison (including the 20k-path paired Monte Carlo).
 - `paper/images_final/` contains the figures used in the manuscript. The
   scripts in `repro/` redraw the data-driven ones from the committed CSV/NPZ
-  files without repeating the Monte Carlo campaign; the remaining figures
-  (expected inventory vs. imbalance, inventory by regime) are produced by the
-  engines during a full run.
+  files without repeating the Monte Carlo campaign; the toy expected-inventory
+  figure is produced by the toy engine during a full run.
 - `rerun_campaign/` collects the robustness checks referenced in the paper
   (parameter holdouts, scaled holdouts, gamma sweep, SRN robustness sweep,
   domain-truncation checks) with their CSV outputs and the decision notes.

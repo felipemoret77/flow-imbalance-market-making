@@ -39,6 +39,7 @@ figures:
 	$(PY) repro/closed_form_anatomy_figs.py
 	$(PY) repro/paired_ladder_fig.py
 	$(PY) repro/regime_depth_figs.py
+	$(PY) repro/inventory_by_regime_fig.py
 
 replot:
 	$(PY) replot_summary_figures.py

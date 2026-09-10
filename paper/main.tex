@@ -1537,9 +1537,7 @@ optimal-quote map \eqref{eq:state_dep_recovery} applied to the ergodic relative
 value of the stated equation; the \(I\)-aware RHJB has no alpha term, the
 Alpha/\(I\)-aware RHJB is solved under a centred no-regime OU, and the
 regime-aware RHJB takes \(R_t\) as perfectly observed---a full-information
-benchmark, the target the regime closed forms approximate.  In the legend of
-Figure~\ref{fig:regime_inventory_by_regime}, ``Regime self-consistent cubic''
-denotes the regime hybrid cubic.}
+benchmark, the target the regime closed forms approximate.}
 \label{tab:policies}
 \begin{tabular}{llll}
 \toprule
@@ -2576,10 +2574,12 @@ policies stay far from the \([-60,60]\) inventory boundary.}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.62\linewidth]{regime_fast_alpha_inventory_by_regime.png}
-\caption{Regime study inventory by slow regime.  The regime-aware RHJB
-policy separates persistent buy- and sell-pressure states more strongly than
-the policies that observe only \(I_t\).}
+\includegraphics[width=0.78\linewidth]{regime_fast_alpha_inventory_by_regime.png}
+\caption{Regime study: mean signed inventory by slow regime,
+\(\E[Q_t\mid R_t]\), pooled over paths and times.  In the neutral regime the
+means of all six policies vanish by symmetry (each within \(0.02\) units), so
+no bar is visible at \(R=0\); the persistent-pressure regimes are discussed
+in the text.}
 \label{fig:regime_inventory_by_regime}
 \end{figure}
 
