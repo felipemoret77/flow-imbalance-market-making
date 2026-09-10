@@ -1,0 +1,7 @@
+policy,penalized_mean,penalized_stderr,total_mean,certainty_equivalent,avg_abs_inventory,fills_mean
+Alpha/I-aware RHJB (SRN),2209.9777,4.5489,2524.3615,2124.0743,7.1877,3746.3185
+Alpha/I-aware RHJB (exact CARA),2171.7839,3.7292,2387.08,2116.6591,5.9479,3655.0755
+
+contrast,value,stderr
+paired penalized (exact CARA - SRN),-38.1938,2.4072
+paired Delta CE (exact CARA - SRN),-7.4152,20.8004

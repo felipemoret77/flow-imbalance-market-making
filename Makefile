@@ -44,6 +44,7 @@ figures:
 
 ablation:
 	$(PY) repro/blind_recalibration_sweep.py
+	$(PY) repro/exact_cara_paired_mc.py
 
 replot:
 	$(PY) replot_summary_figures.py

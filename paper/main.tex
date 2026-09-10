@@ -1888,7 +1888,15 @@ transform of \eqref{eq:regime_cara_joint_cole_hopf}), in which the signal-risk t
 \(q\in\{-5,0,10,15\}\), the signal-risk-neutral depths differ from the exact
 CARA depths by an RMSE of \(0.044\) uniform / \(0.034\) stationary-weighted
 (toy) and \(0.104\) / \(0.091\) (fast-alpha)---small in the toy, comparable to
-the closed-form error itself in the fast-alpha model.  An elementary
+the closed-form error itself in the fast-alpha model.  The same ordering holds
+for the policies themselves.  Running the exact-CARA RHJB against the
+signal-risk-neutral one on \(4000\) shared fast-alpha paths, the exact-CARA
+policy holds less inventory (\(\E|Q_t|=5.95\) against \(7.19\)) and gives up
+realized PnL---paired \(-137.3\pm2.6\), penalized \(-38.2\pm2.4\)---for a
+certainty-equivalent difference indistinguishable from zero
+(\(\Delta\mathrm{CE}=-7.4\), \(95\%\) bootstrap CI \([-49.7,32.8]\)): at
+\(\gamma=0.01\) the signal-risk charge costs realized PnL without buying
+measurable utility.  An elementary
 leading-order correction, \(\sigma^2\to\sigma^2+\eta^2h'(i)^2\) in the
 curvature \(r(i)\) of the closed forms below (\(h\) their imbalance loading),
 improves the stationary-weighted fit of the fast-alpha closed form to the
