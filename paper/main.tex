@@ -2670,9 +2670,8 @@ Right: each closed form against its own RHJB reference---toy:
 paired-bootstrap \(\Delta\mathrm{CE}\) against the \(I\)-aware RHJB
 (\(2000\) path resamples; exponential-weight ESS \(73\) and \(145\));
 fast-alpha: \(\Delta\)penalized PnL against the Alpha/\(I\)-aware RHJB;
-regime: \(\Delta\)penalized PnL against the regime-aware RHJB, point
-estimates from Table~\ref{tab:regime_summary} without paired standard errors
-(open markers).  Bars are \(95\%\) intervals.}
+regime: \(\Delta\)penalized PnL against the regime-aware RHJB.  Bars are
+\(95\%\) intervals.}
 \label{fig:paired_ladder}
 \end{figure}
 
@@ -2706,10 +2705,9 @@ policy about two, and signal-blind GLFT and the \(I\)-aware policy hold
 inventory of the wrong sign there.  Both closed forms fall short of the regime-aware RHJB in penalized PnL---the
 body hybrid flow-gated cubic by about \(23\) (\(\approx1\%\), penalized
 \(\approx2400\)), the offline Galerkin-cubic by about \(140\)
-(\(\approx2283\)), the ordering of the depth figures.  Paired standard errors
-were not computed for these two contrasts, so we report them as point
-differences; for scale, the corresponding fast-alpha contrasts have paired
-standard errors near \(1.1\).  Both forms quote more aggressively into the
+(\(\approx2283\)), the ordering of the depth figures.  Paired on the shared
+paths these are \(-23.2\pm1.1\) and \(-140.3\pm1.2\), statistically clear
+shortfalls rather than ties.  Both forms quote more aggressively into the
 regime signal (\(\E|Q_t|\approx10.8\) versus \(9.7\)), earning more raw PnL
 and paying for it in inventory penalty.  Figure~\ref{fig:paired_ladder}
 collects the paired contrasts of the three studies.

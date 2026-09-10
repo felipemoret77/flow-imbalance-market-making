@@ -39,8 +39,8 @@ rows=[("toy self-consistent cubic\n($\\Delta$CE, paired bootstrap)",toy["toy sel
       ("toy Galerkin-cubic\n($\\Delta$CE, paired bootstrap)",toy["toy Galerkin-cubic"][0],toy["toy Galerkin-cubic"][1],True,"#8c564b"),
       ("fast-alpha hybrid cubic\n($\\Delta$penalized)",fa["sc-cubic vs RHJB"][0],fa["sc-cubic vs RHJB"][1],True,"#E69F00"),
       ("fast-alpha Galerkin-cubic\n($\\Delta$penalized)",fa["galerkin vs RHJB"][0],fa["galerkin vs RHJB"][1],True,"#E69F00"),
-      ("regime hybrid cubic\n($\\Delta$penalized, no paired s.e.)",2400.31-2423.51,0.0,False,"#1B9E77"),
-      ("regime Galerkin-cubic\n($\\Delta$penalized, no paired s.e.)",2283.20-2423.51,0.0,False,"#1B9E77")]
+      ("regime hybrid cubic\n($\\Delta$penalized)",rg["sc-cubic vs RHJB"][0],rg["sc-cubic vs RHJB"][1],True,"#1B9E77"),
+      ("regime Galerkin-cubic\n($\\Delta$penalized)",rg["galerkin vs RHJB"][0],rg["galerkin vs RHJB"][1],True,"#1B9E77")]
 yy=np.arange(len(rows))[::-1]
 for (lab,md,se,paired,col),y in zip(rows,yy):
     if paired: b.errorbar(md,y,xerr=1.96*se,fmt="o",ms=8,color=col,capsize=4,lw=2)
