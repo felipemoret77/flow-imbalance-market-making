@@ -642,11 +642,11 @@ In this extension, the zero-depth buy and sell intensities are given by
 \Lambda^{a,0}(i)
 &=\bar\Lambda(1+\tanh i)
 =\bar\Lambda\frac{\e^i}{\cosh i},
-\label{eq:lambda_plus_y}\\
+\label{eq:lambda_ask}\\
 \Lambda^{b,0}(i)
 &=\bar\Lambda(1-\tanh i)
 =\bar\Lambda\frac{\e^{-i}}{\cosh i}.
-\label{eq:lambda_minus_y}
+\label{eq:lambda_bid}
 \end{align}
 Therefore
 \[
@@ -738,7 +738,9 @@ regime extensions below.
 Fix the finite inventory grid \(\Qcal\).  Let the exogenous state
 \(Z_t=(Y_t,R_t)\) be a Markov switching diffusion: conditional on the
 finite-state chain \(R_t\), whose jump rates are bounded, the diffusion \(Y_t\)
-has globally Lipschitz coefficients and at most linear growth.  A pure
+has globally Lipschitz coefficients and at most linear growth.  In this paper
+\(Y_t=I_t\), the imbalance state, and \(R_t\) is present only in
+Section~\ref{sec:regime}.  A pure
 diffusion (such as the OU imbalance \eqref{eq:toy_ou}) and a pure finite-state
 chain are included as special cases.  Assume that the reference-price drift
 and volatility used in the control problem are bounded functions of the
@@ -1331,14 +1333,23 @@ base scales; the closure consequently has \(r=O(r_{\rm G})\), with
 same order one as the skew \(rq\) over the band the policy visits,
 \(q=O(r_{\rm G}^{-1})\).  The kept argument \(\vartheta+rq-sq^2\) is then
 \(O(1)\), whereas the dropped prefactor exponent \(sq-\tfrac r2\) is
-\(O(r_{\rm G})\) and the inner shift \(s/3\) is \(O(r_{\rm G}^2)\):
+\(O(r_{\rm G})\) and the inner shift \(s/3\) is \(O(r_{\rm G}^2)\).  Both
+are dropped, and because the prefactor multiplies the whole execution sum the
+cost is a \emph{relative} error:
 \begin{equation}
 \frac{\Lambda^{a,0}}{k}\chi_\gamma\e^{k(v_{q-1}-v_q)}
 +\frac{\Lambda^{b,0}}{k}\chi_\gamma\e^{k(v_{q+1}-v_q)}
 =\frac{2c_{\rm GLFT}}{k\cosh i}\,
-\cosh\bigl\{\vartheta+rq-s q^2\bigr\}+O(r_{\rm G}).
+\cosh\bigl\{\vartheta+rq-s q^2\bigr\}\bigl(1+O(r_{\rm G})\bigr).
 \label{eq:toy_cubic_cosh}
 \end{equation}
+Every coefficient matched below therefore carries a relative
+\(1+O(r_{\rm G})\) error, about \(2.6\%\) at the baseline.  The distinction
+matters: an additive \(O(r_{\rm G})\) would be of size
+\(\tfrac{2c_{\rm GLFT}}{k}\tfrac{r_{\rm G}}{2}\approx8.6\times10^{-3}\),
+an order of magnitude above the inventory-risk coefficient
+\(a_{\rm c}/k=4.5\times10^{-4}\) that the \(q^2\) balance matches, and could
+not support the matching that follows.
 
 \emph{Expansion in \(q\).}  With the inventory skew \(p:=rq-sq^2\) and
 \(\cosh\{\vartheta+p\}=\cosh\vartheta\cosh p+\sinh\vartheta\sinh p\), expanding
@@ -1391,11 +1402,14 @@ turn below.
 which by \eqref{eq:toy_cubic_cosh} is the local execution rate
 \(E_i(p)=\tfrac{2c_{\rm GLFT}}{k\cosh i}\cosh(\vartheta+p)\) evaluated at the
 inventory skew \(p=rq-sq^2\).  Its constant feeds the \(q^0\) balance and its
-slope term \(E_i'(0)\,p\) the loading channel (the \(q^1\) source of
-\eqref{eq:toy_q1_match}, together with the cross term
-\(-s\sinh\vartheta\,q^2\)); what sets the inventory curvature is how \(E_i\)
-curves with \(p\).  Matching the nonlinear part \(E_i(p)-E_i(0)-E_i'(0)p\) to
-the inventory-risk term \(\tfrac{a_{\rm c}}{k}q^2\), with
+slope term \(E_i'(0)\,p\) splits between two orders: it feeds the \(q^1\)
+balance \eqref{eq:toy_q1_match} through \(r\sinh\vartheta\) and, one order
+down, contributes the slope--cubic cross term \(-s\sinh\vartheta\,q^2\) to
+the \(q^2\) balance \eqref{eq:toy_cubic_q2}.  What sets the inventory curvature is how
+\(E_i\) curves with \(p\).  The inventory-risk contribution enters the balance
+as \(-\tfrac{a_{\rm c}}{k}q^2\), so we match the nonlinear part
+\(E_i(p)-E_i(0)-E_i'(0)p\) to \(\tfrac{a_{\rm c}}{k}q^2\), deferring the
+slope--cubic cross term to the residual \(\mathcal R_2\) below.  With
 \(p^2=r^2q^2-2rsq^3+O(q^4)\) and \(p^3=r^3q^3+O(q^4)\), the \(q^2\) and
 \(q^3\) coefficients give
 \[
@@ -1522,7 +1536,8 @@ trade-sign autocorrelations is left for future work.
 
 \begin{table}[htbp]
 \centering
-\caption{Model and simulation parameters used in the reported experiments.}
+\caption{Model, simulation, and diagnostic parameters used in the reported
+experiments.}
 \label{tab:parameters}
 \begin{tabular}{lll}
 \hline
@@ -1544,6 +1559,7 @@ Symbol & Meaning & Value\\
 \(T\) & simulation horizon & \(10000\)\\
 \(\Delta t\) & simulation time step & \(0.05\)\\
 \(\Delta t_{\rm rec}\) & diagnostic recording interval & \(1\)\\
+\(c_T\) & terminal liquidation charge & \(0.01\)\\
 paths & Monte Carlo paths & \(20000\)\\
 \hline
 \end{tabular}
@@ -1562,7 +1578,10 @@ regime-aware RHJB takes \(R_t\) as perfectly observed---a full-information
 benchmark, the target the regime closed forms approximate.  These names are
 used in the result tables and figure legends below, abbreviated there by
 dropping the ``signal-blind'', ``RHJB'' and study qualifiers where the column
-width requires it.}
+width requires it.  Two drawing conventions run through the figures: in the
+depth comparisons the section's numerical RHJB is solid black, the body closed
+form dashed orange and the appendix Galerkin form dotted purple; in the
+policy-comparison figures each policy keeps one colour throughout.}
 \label{tab:policies}
 \begin{tabular}{llll}
 \toprule
@@ -1747,7 +1766,7 @@ If \(\alpha_t\) mean-reverts much faster than \(I_t\), its \(I\)-conditional mea
 At leading order in the fast-\(\alpha\) limit we freeze the slow variable
 \(I_t=i\).  Conditioning \eqref{eq:alpha_full_sde} on \(I_t=i\), the drift of \(\alpha_t\)
 is \(-\zeta\,\E[\alpha_t\mid i]+\epsilon\bigl(\Lambda^{a,0}(i)-\Lambda^{b,0}(i)\bigr)\),
-and \eqref{eq:lambda_plus_y}--\eqref{eq:lambda_minus_y} give
+and \eqref{eq:lambda_ask}--\eqref{eq:lambda_bid} give
 \(\epsilon(\Lambda^{a,0}(i)-\Lambda^{b,0}(i))=2\bar\Lambda\epsilon\tanh i\) (the
 diffusion \(\eta_\alpha\dd W^\alpha_t\) has zero conditional mean).  Setting this
 frozen-\(I\) drift to zero gives \eqref{eq:alpha_bar_fast}; corrections from the
@@ -2263,7 +2282,14 @@ drives the cost of quoting, ours the future flow).  The simulated state is
 \subsection{Regime-Modulated Imbalance Process}
 \label{subsec:regime_process}
 
-Let \(\mathcal R\) be a finite set of regime labels.  The regime process
+Let \(\mathcal R\) be a finite set of regime labels.  Throughout
+Sections~\ref{sec:regime}--\ref{sec:numerical_implementation} and
+Appendix~\ref{app:regime_refined} the regime label is \(r\), carried as a
+subscript on every regime-dependent object (\(z_r\), \(u_{q,r}\),
+\(h_{{\rm shift},r}\), \(\vartheta_{{\rm full},r}\), \(s_r\)) and as the last
+argument of the quote functions; the inventory curvature is a different object,
+written \(r(i)\) when state-dependent and \(r_{\rm G}\) for its frozen GLFT
+value, and never carries a regime subscript.  The regime process
 \(R_t\in\mathcal R\) is a
 continuous-time Markov chain with generator
 \[
@@ -2308,7 +2334,7 @@ eigenvector, \(\Gamma z=-(1/\tau_R)z\); the closed-form regime ansatz below
 uses this eigenmode relation with \(\lambda_R=1/\tau_R\).
 
 The zero-depth execution intensities remain
-\eqref{eq:lambda_plus_y}--\eqref{eq:lambda_minus_y}, functions of the current
+\eqref{eq:lambda_ask}--\eqref{eq:lambda_bid}, functions of the current
 imbalance \(I_t\) alone: \(R_t\) does not enter the fill law directly, but
 changes the conditional law of future \(I\)-values in
 \eqref{eq:regime_y_dynamics}, so two paths with the same current \(I_t=i\) can
@@ -2483,28 +2509,25 @@ deferred to Appendix~\ref{app:regime_refined}.
 \paragraph{Regime hybrid flow-gated cubic (body closure).}
 The regime extends the fast-alpha hybrid flow-gated cubic
 \eqref{eq:fast_alpha_selfconsistent_quotes} by a third, \emph{slow} channel.
-To distinguish the regime label from the curvature \(r(i)\), write
-\(\ell\in\mathcal R\) for the former throughout this paragraph; the ask/bid
-side, elsewhere carried by \(\ell\in\{a,b\}\), is written out explicitly.
 With \(h_I,h_\alpha,A_2,\vartheta_I,\mathcal M_I,r(i)\) and \(g\) exactly as
 in \eqref{eq:fa_selfcons_loadings}--\eqref{eq:fa_selfcons_shift}---the
 curvature still reads the flow-only shift \(\vartheta_I\), retaining the much
 smaller flow-only curvature plateau, and the skew still flow-gates the two
-\emph{fast} channels---the only change is the regime level \(A_Rz_\ell\),
+\emph{fast} channels---the only change is the regime level \(A_Rz_r\),
 carried ungated in the shift,
 \begin{equation}
-\boxed{\,h_{\rm shift}(i,\ell)=\mathcal M_I\,h_I
-+\bigl[1+g(\mathcal M_I-1)\bigr]h_\alpha+A_R z_\ell\,}
+\boxed{\,h_{{\rm shift},r}(i)=\mathcal M_I\,h_I
++\bigl[1+g(\mathcal M_I-1)\bigr]h_\alpha+A_R z_r\,}
 \label{eq:regime_sc_shift}
 \end{equation}
-with \(\vartheta_{\rm full}(i,\ell)=i-k\,h_{\rm shift}(i,\ell)\) and cubic
-\(s(i,\ell)=\tfrac{r(i)^2}{6}\tanh\vartheta_{\rm full}(i,\ell)\) as in
+with \(\vartheta_{{\rm full},r}(i)=i-k\,h_{{\rm shift},r}(i)\) and cubic
+\(s_r(i)=\tfrac{r(i)^2}{6}\tanh\vartheta_{{\rm full},r}(i)\) as in
 \eqref{eq:fa_selfcons_cubic}, so that
 \begin{equation}
 \boxed{\;
 \begin{aligned}
-\delta_{R,\,\text{hybrid}}^a(q,i,\ell)&=\delta_\gamma+h_{\rm shift}-\tfrac{r(i)}{2k}(2q-1)+\tfrac{s(i,\ell)}{k}\bigl(q^2-q+\tfrac13\bigr),\\[2pt]
-\delta_{R,\,\text{hybrid}}^b(q,i,\ell)&=\delta_\gamma-h_{\rm shift}+\tfrac{r(i)}{2k}(2q+1)-\tfrac{s(i,\ell)}{k}\bigl(q^2+q+\tfrac13\bigr),
+\delta_{R,\,\text{hybrid}}^a(q,i,r)&=\delta_\gamma+h_{{\rm shift},r}-\tfrac{r(i)}{2k}(2q-1)+\tfrac{s_r(i)}{k}\bigl(q^2-q+\tfrac13\bigr),\\[2pt]
+\delta_{R,\,\text{hybrid}}^b(q,i,r)&=\delta_\gamma-h_{{\rm shift},r}+\tfrac{r(i)}{2k}(2q+1)-\tfrac{s_r(i)}{k}\bigl(q^2+q+\tfrac13\bigr),
 \end{aligned}\;}
 \label{eq:regime_sccubic_quotes}
 \end{equation}
@@ -2524,13 +2547,14 @@ reaches \(\approx0.65\) on the same comparison.  The gated form is an
 ablation, not the reported policy.
 
 \paragraph{Status and limit.}
-The split use of \(\vartheta_I\) in \(r\) and \(\vartheta_{\rm full}\) in
-\(s\) is a hybrid empirical closure validated numerically, not a theorem or a
+The split use of \(\vartheta_I\) in the curvature \(r(i)\) and of
+\(\vartheta_{{\rm full},r}\) in the cubic \(s_r\) is a hybrid empirical
+closure validated numerically, not a theorem or a
 strict coefficient match; \(A_\alpha,A_R\) are local-linear coefficients
 extended as bounded profiles.  At balanced flow \(i=0\) the fast channels vanish
-but the regime channel does not: \(h_{\rm shift}(0,\ell)=A_R z_\ell\), so a non-neutral
-regime keeps the book biased and \(s(0,\ell)\neq0\); only the fully neutral state
-(\(i=0,\ z_\ell=0\)) recovers the signal-blind GLFT quotes.
+but the regime channel does not: \(h_{{\rm shift},r}(0)=A_R z_r\), so a non-neutral
+regime keeps the book biased and \(s_r(0)\neq0\); only the fully neutral state
+(\(i=0,\ z_r=0\)) recovers the signal-blind GLFT quotes.
 
 \subsection{Regime Numerical Study}
 
@@ -2577,8 +2601,8 @@ balanced flow (\(q=0\), \(i=0\)) the RHJB's own slope in \(z_r\) is \(0.246\),
 close to the Galerkin-local value \(B_G\approx0.257\) of
 Appendix~\ref{app:regime_refined}, so the imported \(A_R\) overstates the regime
 response at the origin by about a third; away from the origin the hybrid
-cubic, whose cubic skew also reads the regime through \(\vartheta_{\rm full}\),
-stays closer to the RHJB.}
+cubic, whose cubic skew also reads the regime through
+\(\vartheta_{{\rm full},r}\), stays closer to the RHJB.}
 \label{fig:regime_depths_vs_alpha_z}
 \end{figure}
 
@@ -2775,7 +2799,11 @@ joint invariant law of \((I,R)\), whose conditional means are \(\pm0.75\)
 rather than \(z_{\pm1}\) (Remark~\ref{rem:domain_convergence}); over
 \(T=10000\) the initialization bias relaxes on the \(1/\beta\) timescale.
 
-Within each step, quotes and intensities use the left-endpoint state.  \(S\),
+The reported path diagnostics---PnL and its components, inventory, and the
+state variables---are sampled into the recorded series every
+\(\Delta t_{\rm rec}=1\) time unit rather than at every simulation step; the
+off-grid shares below are instead accumulated at every step.  Within each
+step, quotes and intensities use the left-endpoint state.  \(S\),
 \(I\), and the diffusive part of \(\alpha\) are advanced by Euler--Maruyama;
 maker fills and aggregate market-order counts are Poisson increments with
 left-endpoint means.  The regime chain uses a one-jump-per-step update with
@@ -2789,7 +2817,7 @@ clips \(I_t\) to the nearest boundary point before interpolation, while
 use the same \(i_c=\operatorname{clip}(I_t,-6,6)\), since their single global
 loading otherwise drives the curvature off-grid
 (Remark~\ref{rem:regime_galerkin}); the body cubic closures and the toy
-Galerkin form use the true \(I_t\).  The shares of recorded time--path
+Galerkin form use the true \(I_t\).  The shares of simulated time--path
 states outside the solve grid are \(0.298\%\) (toy), \(0.302\%\)
 (fast-alpha) and \(0.490\%\) (regime); no clipping ablation was run, so the
 closed-form-versus-RHJB contrasts differ in the off-grid rule as well as in
@@ -3171,49 +3199,49 @@ exactly as there:
 The offline-calibrated companion of the body hybrid flow-gated cubic
 \eqref{eq:regime_sccubic_quotes}, the \emph{regime Galerkin-cubic}, carries the
 fast-alpha global Galerkin loading of Appendix~\ref{app:fast_alpha_refined} into
-the regime model and adds the slow regime channel.  Here \(\ell\in\mathcal R\)
-is the regime index (distinct from the curvature \(r(i)\)); the ask/bid side,
-elsewhere \(\ell\in\{a,b\}\), is written out.  Under the separable closure
-\(h_\ell(i)=h_G(i)+Bz_\ell\) the extra regime term in the \(q^1\) balance,
-\(z_\ell[\beta h_G'(i)-(\lambda_R+2\kappa)B]\), is even in \(i\) (\(h_G\) odd),
+the regime model and adds the slow regime channel.  The subscript convention of
+Section~\ref{sec:regime} applies: \(r\in\mathcal R\) is the regime label and
+\(r(i)\) the curvature.  Under the separable closure
+\(h_r(i)=h_G(i)+Bz_r\) the extra regime term in the \(q^1\) balance,
+\(z_r[\beta h_G'(i)-(\lambda_R+2\kappa)B]\), is even in \(i\) (\(h_G\) odd),
 hence orthogonal to the odd test functions \(\{i,i^3\}\) under the centred OU
 weight: the moment equations for \((A,\varrho)\) of
 \eqref{eq:fa_galerkin_constants} are unchanged---a parity statement, not an
-invariance of the full \((i,\ell)\)-Galerkin residual (it fails if
-\(Bz_\ell\) enters the nonlinear curvature, under the true joint weight
-\(p_\ell(i)\), or with even test functions).  Parity also leaves \(B\)
+invariance of the full \((i,r)\)-Galerkin residual (it fails if
+\(Bz_r\) enters the nonlinear curvature, under the true joint weight
+\(p_r(i)\), or with even test functions).  Parity also leaves \(B\)
 undetermined: a Galerkin-local closure gives
 \(B_G=\beta A/(\lambda_R+2\kappa)\approx0.257\); we import the body-ansatz
 \(A_R\approx0.331\) of \eqref{eq:regime_closed_loading} for continuity with the
 body hybrid cubic; the numerical RHJB's slope in \(z_r\) at balanced flow,
 \(0.246\) (Figure~\ref{fig:regime_depths_vs_alpha_z}), sits at the
-Galerkin-local value rather than at \(A_R\).  No full \((i,\ell)\)-Galerkin residual is re-solved: the
+Galerkin-local value rather than at \(A_R\).  No full \((i,r)\)-Galerkin residual is re-solved: the
 fast-alpha loading is kept, the regime channel added, and the curvature/cubic
 evaluated at the \emph{regime-excluded} fast-alpha Galerkin shift,
 \begin{equation}
 h_G^{\rm fa}(i)=A\,\frac{i}{\sqrt{1+\tfrac{\beta}{\varrho\,\eta^2}i^2}},\qquad
-h_G^{\rm reg}(i,\ell)=h_G^{\rm fa}(i)+A_R z_\ell,\qquad
+h_{G,r}^{\rm reg}(i)=h_G^{\rm fa}(i)+A_R z_r,\qquad
 \vartheta_G(i)=i-k\,h_G^{\rm fa}(i),\label{eq:regime_galerkin_loading}
 \end{equation}
 with \(r(i)\), \(s(i)\) as in \eqref{eq:fa_curvature_rs} evaluated at
 \(\vartheta_G\); the optimal-quote map returns
 \begin{equation}
-\delta_{R,\rm gal}^{a,b}(q,i,\ell)=\delta_\gamma\pm h_G^{\rm reg}(i,\ell)
+\delta_{R,\rm gal}^{a,b}(q,i,r)=\delta_\gamma\pm h_{G,r}^{\rm reg}(i)
 \mp\tfrac{r(i)}{2k}(2q\mp1)\pm\tfrac{s(i)}{k}\bigl(q^2\mp q+\tfrac13\bigr),
-\qquad \ell\in\mathcal R.\label{eq:regime_galerkin_quotes}
+\qquad r\in\mathcal R.\label{eq:regime_galerkin_quotes}
 \end{equation}
 
 \begin{remark}[Offline Galerkin companion and solve-grid tail inflation]
 \label{rem:regime_galerkin}
 The plateau mechanism and the solve-grid curvature inflation of
 Remark~\ref{rem:fa_galerkin_tradeoff} carry over unchanged, with the same
-\(r/r_{\rm G}\approx9\) at \(i=6\).  The verdict, however, does not.  On the
+\(r(i)/r_{\rm G}\approx9\) at \(i=6\).  The verdict, however, does not.  On the
 pooled imbalance-axis comparison against the numerical regime RHJB (over
 \(q\in\{-5,0,10,15\}\) and the three regimes) the regime Galerkin-cubic has
 depth RMSE \(\approx0.65\), versus \(\approx0.10\) for the body hybrid
 flow-gated cubic \eqref{eq:regime_sccubic_quotes}, and it buys no matching
 inventory-axis advantage: that ordering depends on the fixed
-\((i,\ell)\)-slice and on the inventory window.  Unlike its fast-alpha
+\((i,r)\)-slice and on the inventory window.  Unlike its fast-alpha
 counterpart it is therefore \emph{not} an inventory specialist, and we retain
 it as an offline comparison only; the body hybrid cubic is the balanced
 default.

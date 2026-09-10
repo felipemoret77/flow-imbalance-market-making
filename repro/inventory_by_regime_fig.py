@@ -10,9 +10,9 @@ OUT = REPO / "paper" / "images_final"; DATA = REPO / "imagens_tex" / "regime_stu
 plt.rcParams.update({"font.size":13,"axes.titlesize":14,"axes.labelsize":13,"xtick.labelsize":12,"ytick.labelsize":12,"legend.fontsize":11,"axes.grid":True,"grid.alpha":.25})
 rows = list(csv.DictReader(open(DATA / "regime_fast_alpha_inventory_by_regime.csv")))
 rows.sort(key=lambda r: int(r["regime"]))
-POL = [("GLFT_mean_q","Signal-blind GLFT","#4c72b0"),("Y-aware_mean_q","$I$-aware RHJB","#55a868"),
+POL = [("GLFT_mean_q","Signal-blind GLFT","#7f7f7f"),("Y-aware_mean_q","$I$-aware RHJB","#1f77b4"),
        ("Alpha/Y-aware_mean_q","Alpha/$I$-aware RHJB","#c44e52"),("Regime-aware_mean_q","Regime-aware RHJB","#111111"),
-       ("Regime sc-cubic_mean_q","Regime hybrid cubic","#1B9E77"),("Regime Galerkin_mean_q","Regime Galerkin-cubic","#B07AA1")]
+       ("Regime sc-cubic_mean_q","Regime hybrid cubic","#E69F00"),("Regime Galerkin_mean_q","Regime Galerkin-cubic","#B07AA1")]
 reg = np.array([int(r["regime"]) for r in rows]); x = np.arange(len(reg)); n = len(POL)
 width = 0.8 / n; offs = (np.arange(n) - 0.5 * (n - 1)) * width
 fig, ax = plt.subplots(figsize=(9.2, 4.8))

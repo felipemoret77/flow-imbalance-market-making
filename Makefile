@@ -41,6 +41,7 @@ figures:
 	$(PY) repro/paired_ladder_fig.py
 	$(PY) repro/regime_depth_figs.py
 	$(PY) repro/inventory_by_regime_fig.py
+	$(PY) repro/toy_conditional_inventory_fig.py
 
 ablation:
 	$(PY) repro/blind_recalibration_sweep.py

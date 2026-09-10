@@ -21,7 +21,7 @@ def rows_fig(d, key, vals, xkey, xlabel, cols, labels, styles, title_fn, out, fi
     for a in ax[-1]: a.set_xlabel(xlabel)
     ax[0,0].legend(loc="best", framealpha=.9); fig.tight_layout(); fig.savefig(out, dpi=170); plt.close(fig); print("wrote", out)
 S_RHJB=dict(ls="-",lw=2.8,color="#111111"); S_HYB=dict(ls="--",lw=2.5,color="#E69F00"); S_GAL=dict(ls=":",lw=2.6,color="#B07AA1")
-S_TOY_RHJB=dict(ls="-",lw=2.8,color="#1f77b4"); S_TOY_SC=dict(ls="--",lw=2.5,color="#8c564b"); S_TOY_GAL=dict(ls=":",lw=2.6,color="#d62728")
+S_TOY_RHJB=dict(ls="-",lw=2.8,color="#111111"); S_TOY_SC=dict(ls="--",lw=2.5,color="#E69F00"); S_TOY_GAL=dict(ls=":",lw=2.6,color="#B07AA1")
 # B toy depths vs imbalance (q = 0, 3, 5 -- only values stored)
 d=load(f"{ROOT}/toy_model_T10000_qmax60/cara_glft_yaware_ansatz_depths_vs_imbalance.csv")
 rows_fig(d,"q",[0,3,5],"y","imbalance $i$",[("ask_hjb","bid_hjb"),("ask_cubic","bid_cubic"),("ask_gal","bid_gal")],
