@@ -4,7 +4,7 @@
 
 PY ?= python
 
-.PHONY: help paper test regen figures replot clean
+.PHONY: help paper test regen figures replot ablation clean
 
 help:
 	@echo "Targets:"
@@ -13,6 +13,7 @@ help:
 	@echo "  make regen    - rerun the three RHJB engines and the Monte Carlo campaign (slow)"
 	@echo "  make figures  - redraw the CSV-driven manuscript figures into paper/images_final/"
 	@echo "  make replot   - redraw the summary figures of the engines from their *_summary.csv"
+	@echo "  make ablation - rerun the signal-blind GLFT curvature sweep of Remark 4.5"
 	@echo "  make clean    - remove LaTeX build artifacts and __pycache__"
 
 paper:
@@ -40,6 +41,9 @@ figures:
 	$(PY) repro/paired_ladder_fig.py
 	$(PY) repro/regime_depth_figs.py
 	$(PY) repro/inventory_by_regime_fig.py
+
+ablation:
+	$(PY) repro/blind_recalibration_sweep.py
 
 replot:
 	$(PY) replot_summary_figures.py

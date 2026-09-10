@@ -1851,7 +1851,9 @@ def main() -> None:
     pp = paths["pen_paths"]
     ladder = [("I over GLFT", "Y-aware", "GLFT"),
               ("alpha over I", "Alpha/Y-aware", "Y-aware"),
-              ("regime over alpha/I (Delta_R)", "Regime-aware", "Alpha/Y-aware")]
+              ("regime over alpha/I (Delta_R)", "Regime-aware", "Alpha/Y-aware"),
+              ("sc-cubic vs RHJB", "Regime sc-cubic", "Regime-aware"),
+              ("galerkin vs RHJB", "Regime Galerkin", "Regime-aware")]
     lines = ["contrast,mean_diff,paired_se,ci95_low,ci95_high,paired_corr"]
     print("\n=== Paired penalized-PnL contrasts (shared paths) ===")
     for label, hi, lo in ladder:
