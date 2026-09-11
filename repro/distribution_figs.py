@@ -109,14 +109,14 @@ ax = np.atleast_1d(ax)
 for a, (title, sty, _, (q, inv)) in zip(ax, STUDIES):
     for lab, p in inv.items():
         col, ls = sty[lab]
-        a.step(q, np.where(p > 0, p, np.nan), where="mid", lw=2.0, ls=ls, color=col, label=lab)
-    a.set_yscale("log"); a.set_ylim(1e-6, 0.6); a.set_xlim(-45, 45)
-    a.set_yticks([1e-6, 1e-4, 1e-2])
+        a.step(q, p, where="mid", lw=2.0, ls=ls, color=col, label=lab)
+    a.set_xlim(-45, 45)      # linear: keeps the benchmark's breadth AND the bimodality of the
+    a.set_ylim(0, None)      # signal-using policies, which a log scale flattens into a plateau
     a.set_title(title); a.set_xlabel("inventory $q$")
     print(f"  [{title}] percentis do inventario")
     for lab, p in inv.items():
         c = np.cumsum(p) / p.sum()
         print(f"    {lab:28s} p01 {q[np.searchsorted(c,0.01)]:4d}  p99 {q[np.searchsorted(c,0.99)]:4d}  E|q| {np.sum(np.abs(q)*p)/p.sum():6.2f}")
-ax[0].set_ylabel("time-in-state frequency (log scale)")
+ax[0].set_ylabel("time-in-state frequency")
 shared_legend(fig); fig.tight_layout(rect=(0, 0.11, 1, 1)); fig.savefig(OUT / "lifetime_inventory_distributions.png", dpi=170)
 print("wrote", OUT / "lifetime_inventory_distributions.png")

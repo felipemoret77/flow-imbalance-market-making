@@ -2720,18 +2720,21 @@ certainty equivalent falls to \(-5476\).}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{lifetime_inventory_distributions.png}
-\caption{Inventory over the simulated lifetime, pooled over paths and times, on
-a log frequency scale: the \(\E|Q_t|\) and \(Q^{\rm life}_{.01},Q^{\rm
-life}_{.99}\) columns of Tables~\ref{tab:toy_summary},
-\ref{tab:alpha_summary} and~\ref{tab:regime_summary} as full distributions.
-The signal-blind benchmark spreads almost flat across \(\pm40\) and is the only
-policy that approaches the \(\pm60\) grid bound, while every state-dependent
-policy concentrates near zero.  Within the regime study the progressive
-widening from the \(I\)-aware RHJB (\(\E|Q_t|=5.7\)) through the
-Alpha/\(I\)-aware RHJB (\(7.4\)) to the regime-aware RHJB (\(9.7\)) and the two
-closed forms (\(10.8\)) is the deliberate directional inventory of
-Remark~\ref{rem:why_carry_inventory}; the same widening, from \(5.5\) to
-\(7.2\), follows the drift reward in the fast-alpha panel.}
+\caption{Inventory over the simulated lifetime, pooled over paths and times:
+the \(\E|Q_t|\) and \(Q^{\rm life}_{.01},Q^{\rm life}_{.99}\) columns of
+Tables~\ref{tab:toy_summary}, \ref{tab:alpha_summary}
+and~\ref{tab:regime_summary} as full distributions.  The signal-blind
+benchmark is the broad, flat hump spanning \(\pm45\), the only policy that
+approaches the \(\pm60\) grid bound, while every state-dependent policy
+concentrates near zero.  The drift reward is what splits the distribution: in
+the martingale toy model all four densities peak at \(q=0\), whereas once
+\(q\alphabar(i)\) enters the alpha-using policies turn \emph{bimodal}, with
+modes near \(\pm8\) for the Alpha/\(I\)-aware RHJB and \(\pm10\) to
+\(\pm11\) for the body cubic and a dip of \(4\%\)--\(26\%\) at the origin.
+That is the deliberate directional inventory of
+Remark~\ref{rem:why_carry_inventory} seen as a distribution rather than as the
+single number \(\E|Q_t|\), which widens from \(5.5\) to \(7.2\) in the
+fast-alpha study and from \(5.7\) to \(10.8\) in the regime study.}
 \label{fig:lifetime_inventory_distributions}
 \end{figure}
 
