@@ -2118,9 +2118,11 @@ execution channel (the realized lifetime quantiles stay near \([-16,16]\),
 Table~\ref{tab:alpha_summary}) and controlled by \(\gamma\), \(\sigma\),
 \(\epsilon\), or \(\zeta\).
 
-That target is the wealth-independent CARA (Merton) holding for an arithmetic
-price with drift \(\alphabar\) and volatility \(\sigma\), and it is bounded for
-an economic reason: the buy share \(\tfrac12(1+\tanh i)\) lies in \((0,1)\), so
+That target is the myopic mean--variance position for a price with drift
+\(\alphabar\) and volatility \(\sigma\)---the maximizer of
+\(q\alphabar-\tfrac{\gamma\sigma^2}{2}q^2\), which under CARA does not depend on
+wealth---so the drift reward makes the book a portfolio rather than an
+inventory to be cleared.  It is bounded for an economic reason: the buy share \(\tfrac12(1+\tanh i)\) lies in \((0,1)\), so
 the net flow generating the drift,
 \(\epsilon(\Lambda^{a,0}-\Lambda^{b,0})=2\bar\Lambda\epsilon\tanh i\), cannot
 exceed the total flow \(2\bar\Lambda\epsilon\).  Past a modest imbalance the
