@@ -2118,27 +2118,31 @@ execution channel (the realized lifetime quantiles stay near \([-16,16]\),
 Table~\ref{tab:alpha_summary}) and controlled by \(\gamma\), \(\sigma\),
 \(\epsilon\), or \(\zeta\).
 
-That target is the myopic mean--variance position for a price with drift
-\(\alphabar\) and volatility \(\sigma\)---the maximizer of
+This is what makes the inventory distribution of
+Figure~\ref{fig:lifetime_inventory_distributions} bimodal: a signal that is
+rarely neutral produces a position that is rarely flat.  The maker wants to be
+long when buyers dominate and short when sellers dominate, and at the
+strong-signal calibration of Table~\ref{tab:parameters} the flow is seldom
+balanced.  The target is the myopic mean--variance position---the maximizer of
 \(q\alphabar-\tfrac{\gamma\sigma^2}{2}q^2\), which under CARA does not depend on
-wealth---so the drift reward makes the book a portfolio rather than an
-inventory to be cleared.  It is bounded for an economic reason: the buy share \(\tfrac12(1+\tanh i)\) lies in \((0,1)\), so
-the net flow generating the drift,
+wealth---and it cannot express more than a direction, because the buy share
+\(\tfrac12(1+\tanh i)\) lies in \((0,1)\): the net flow generating the drift,
 \(\epsilon(\Lambda^{a,0}-\Lambda^{b,0})=2\bar\Lambda\epsilon\tanh i\), cannot
-exceed the total flow \(2\bar\Lambda\epsilon\).  Past a modest imbalance the
-signal therefore says \emph{which way} to lean, not how much; since
-\(|I_t|>1\) about \(62\%\) of the time, the law of \(q^\star_{\rm d}\) is itself
-bimodal (modes \(\pm39.5\), \(4\%\) of peak at the origin), a shape the
-realized inventory inherits
-(Figure~\ref{fig:lifetime_inventory_distributions}).  What separates the
-policies is the shape of the lean, not its size: the \(I\)-aware RHJB reaches a
-comparable \(\E[Q_t\mid I_t]=\pm8.3\), but leans \emph{against} the flow and
-saturates more slowly (\(\E[Q_t\mid I_t=2]/\E[Q_t\mid I_t=4]=0.70\) against
-\(0.85\)), so its mixture over stationary \(I\) keeps \(0.82\) of peak density
-at the origin and stays unimodal, against \(0.18\) with modes at \(\pm7.7\).
-The split is real but not dramatic: between- over within-signal standard
-deviation is \(1.16\) for the Alpha/\(I\)-aware policy and \(0.94\) for the
-regime cubic, so the conditional spread nearly washes the two humps out.
+exceed the total flow \(2\bar\Lambda\epsilon\).  Quantitatively, \(|I_t|>1\)
+about \(62\%\) of the time and there \(q^\star_{\rm d}\) already exceeds three
+quarters of its ceiling, so its law is itself bimodal (modes \(\pm39.5\),
+\(4\%\) of peak at the origin) and the realized inventory inherits that shape.
+The \(I\)-aware RHJB is the control that rules out the simpler reading that the
+alpha policy merely carries more: it reaches a comparable
+\(\E[Q_t\mid I_t]=\pm8.3\) and is still unimodal, because it leans
+\emph{against} the flow rather than into it and its response saturates more
+slowly (\(\E[Q_t\mid I_t=2]/\E[Q_t\mid I_t=4]=0.70\) against \(0.85\)), leaving
+\(0.82\) of peak density at the origin against \(0.18\).  What the drift reward
+changes is not how much inventory the maker holds but whether it is aiming at a
+position or resisting one.  The split is real but not dramatic: between- over
+within-signal standard deviation is \(1.16\) for the Alpha/\(I\)-aware policy
+and \(0.94\) for the regime cubic, so the conditional spread nearly washes the
+two humps out.
 \end{remark}
 
 \subsection{Fast-Alpha Numerical Study}
