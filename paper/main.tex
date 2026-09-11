@@ -2699,6 +2699,40 @@ regime: \(\Delta\)penalized PnL against the regime-aware RHJB.  Bars are
 \label{fig:paired_ladder}
 \end{figure}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{terminal_pnl_distributions.png}
+\caption{Terminal-PnL distributions on the shared environment paths
+(\(20000\) paths; density on a log scale), each study's policies against the
+signal-blind benchmark.  Dotted vertical lines mark the certainty equivalent
+\eqref{eq:certainty_equivalent}.  The toy panel is the picture behind the
+certainty-equivalent column of Table~\ref{tab:toy_summary}: the benchmark earns
+the \emph{higher} mean PnL, \(2408\) against \(2097\), but with \(2.6\) times
+the dispersion and a first percentile at \(1037\) against \(1576\), so its
+certainty equivalent collapses to \(953\) while the \(I\)-aware RHJB keeps
+\(1842\).  The certainty-equivalent gap is therefore a tail effect, not a mean
+effect.  In the regime study the benchmark's whole distribution lies below the
+state-aware ones.}
+\label{fig:terminal_pnl_distributions}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{lifetime_inventory_distributions.png}
+\caption{Inventory over the simulated lifetime, pooled over paths and times, on
+a log frequency scale: the \(\E|Q_t|\) and \(Q^{\rm life}_{.01},Q^{\rm
+life}_{.99}\) columns of Tables~\ref{tab:toy_summary},
+\ref{tab:alpha_summary} and~\ref{tab:regime_summary} as full distributions.
+The signal-blind benchmark spreads almost flat across \(\pm40\) and is the only
+policy that approaches the \(\pm60\) grid bound, while every state-dependent
+policy concentrates near zero.  Within the regime study the progressive
+widening from the \(I\)-aware RHJB (\(\E|Q_t|=5.7\)) through the
+Alpha/\(I\)-aware RHJB (\(7.4\)) to the regime-aware RHJB (\(9.7\)) and the two
+closed forms (\(10.8\)) is the deliberate directional inventory of
+Remark~\ref{rem:why_carry_inventory}.}
+\label{fig:lifetime_inventory_distributions}
+\end{figure}
+
 Because all six policies run on the \emph{same} exogenous
 \((S,I,R,\alpha)\)-environment, the table is a ladder in penalized PnL as
 information is added: signal-blind GLFT (\(-4154\)) is severely adversely
@@ -2734,7 +2768,10 @@ paths these are \(-23.2\pm1.1\) and \(-140.3\pm1.2\), statistically clear
 shortfalls rather than ties.  Both forms quote more aggressively into the
 regime signal (\(\E|Q_t|\approx10.8\) versus \(9.7\)), earning more raw PnL
 and paying for it in inventory penalty.  Figure~\ref{fig:paired_ladder}
-collects the paired contrasts of the three studies.
+collects the paired contrasts of the three studies, and
+Figures~\ref{fig:terminal_pnl_distributions}
+and~\ref{fig:lifetime_inventory_distributions} show the terminal-PnL and
+lifetime-inventory distributions behind the table columns.
 
 
 
