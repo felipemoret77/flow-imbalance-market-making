@@ -2117,6 +2117,26 @@ this is the economic content of the drift term, tempered in practice by the
 execution channel (the realized lifetime quantiles stay near \([-16,16]\),
 Table~\ref{tab:alpha_summary}) and controlled by \(\gamma\), \(\sigma\),
 \(\epsilon\), or \(\zeta\).
+
+That target is the wealth-independent CARA (Merton) holding for an arithmetic
+price with drift \(\alphabar\) and volatility \(\sigma\), and it is bounded for
+an economic reason: the buy share \(\tfrac12(1+\tanh i)\) lies in \((0,1)\), so
+the net flow generating the drift,
+\(\epsilon(\Lambda^{a,0}-\Lambda^{b,0})=2\bar\Lambda\epsilon\tanh i\), cannot
+exceed the total flow \(2\bar\Lambda\epsilon\).  Past a modest imbalance the
+signal therefore says \emph{which way} to lean, not how much; since
+\(|I_t|>1\) about \(62\%\) of the time, the law of \(q^\star_{\rm d}\) is itself
+bimodal (modes \(\pm39.5\), \(4\%\) of peak at the origin), a shape the
+realized inventory inherits
+(Figure~\ref{fig:lifetime_inventory_distributions}).  What separates the
+policies is the shape of the lean, not its size: the \(I\)-aware RHJB reaches a
+comparable \(\E[Q_t\mid I_t]=\pm8.3\), but leans \emph{against} the flow and
+saturates more slowly (\(\E[Q_t\mid I_t=2]/\E[Q_t\mid I_t=4]=0.70\) against
+\(0.85\)), so its mixture over stationary \(I\) keeps \(0.82\) of peak density
+at the origin and stays unimodal, against \(0.18\) with modes at \(\pm7.7\).
+The split is real but not dramatic: between- over within-signal standard
+deviation is \(1.16\) for the Alpha/\(I\)-aware policy and \(0.94\) for the
+regime cubic, so the conditional spread nearly washes the two humps out.
 \end{remark}
 
 \subsection{Fast-Alpha Numerical Study}
@@ -2734,7 +2754,14 @@ modes near \(\pm8\) for the Alpha/\(I\)-aware RHJB and \(\pm10\) to
 That is the deliberate directional inventory of
 Remark~\ref{rem:why_carry_inventory} seen as a distribution rather than as the
 single number \(\E|Q_t|\), which widens from \(5.5\) to \(7.2\) in the
-fast-alpha study and from \(5.7\) to \(10.8\) in the regime study.}
+fast-alpha study and from \(5.7\) to \(10.8\) in the regime study.  The origin
+is transit rather than a resting point: turning the book from \(+8\) to
+\(-8\) means \(16\) units at a realized \(\approx0.37\) fills per unit time,
+of the same order as the imbalance half-life \(\log2/\beta\approx55\), and the
+Alpha/\(I\)-aware policy accordingly spends \(\Prob(|Q_t|\le2)=0.160\) of its
+life near flat against \(0.503\) at the modes.  A single hump at zero says
+inventory is a cost to be reverted; two humps say it is a position, and flat is
+the least attractive place to be.}
 \label{fig:lifetime_inventory_distributions}
 \end{figure}
 
