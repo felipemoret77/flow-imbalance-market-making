@@ -2118,31 +2118,17 @@ execution channel (the realized lifetime quantiles stay near \([-16,16]\),
 Table~\ref{tab:alpha_summary}) and controlled by \(\gamma\), \(\sigma\),
 \(\epsilon\), or \(\zeta\).
 
-This is what makes the inventory distribution of
-Figure~\ref{fig:lifetime_inventory_distributions} bimodal: a signal that is
-rarely neutral produces a position that is rarely flat.  The maker wants to be
-long when buyers dominate and short when sellers dominate, and at the
-strong-signal calibration of Table~\ref{tab:parameters} the flow is seldom
-balanced.  The target is the myopic mean--variance position---the maximizer of
-\(q\alphabar-\tfrac{\gamma\sigma^2}{2}q^2\), which under CARA does not depend on
-wealth---and it cannot express more than a direction, because the buy share
-\(\tfrac12(1+\tanh i)\) lies in \((0,1)\): the net flow generating the drift,
-\(\epsilon(\Lambda^{a,0}-\Lambda^{b,0})=2\bar\Lambda\epsilon\tanh i\), cannot
-exceed the total flow \(2\bar\Lambda\epsilon\).  Quantitatively, \(|I_t|>1\)
-about \(62\%\) of the time and there \(q^\star_{\rm d}\) already exceeds three
-quarters of its ceiling, so its law is itself bimodal (modes \(\pm39.5\),
-\(4\%\) of peak at the origin) and the realized inventory inherits that shape.
-The \(I\)-aware RHJB is the control that rules out the simpler reading that the
-alpha policy merely carries more: it reaches a comparable
-\(\E[Q_t\mid I_t]=\pm8.3\) and is still unimodal, because it leans
-\emph{against} the flow rather than into it and its response saturates more
-slowly (\(\E[Q_t\mid I_t=2]/\E[Q_t\mid I_t=4]=0.70\) against \(0.85\)), leaving
-\(0.82\) of peak density at the origin against \(0.18\).  What the drift reward
-changes is not how much inventory the maker holds but whether it is aiming at a
-position or resisting one.  The split is real but not dramatic: between- over
-within-signal standard deviation is \(1.16\) for the Alpha/\(I\)-aware policy
-and \(0.94\) for the regime cubic, so the conditional spread nearly washes the
-two humps out.
+This is why the inventory distribution of
+Figure~\ref{fig:lifetime_inventory_distributions} is bimodal: a signal that is
+rarely neutral produces a position that is rarely flat.  The buy share
+\(\tfrac12(1+\tanh i)\) lies in \((0,1)\), so the drift---and with it the
+target---saturates, and past a modest imbalance the flow says which way to lean
+and not how much; the imbalance sits outside the balanced band \(62\%\) of the
+time.  The \(I\)-aware RHJB rules out the simpler reading that the alpha policy
+merely carries more: it reaches a comparable \(\E[Q_t\mid I_t]=\pm8.3\) and
+stays unimodal, because it leans \emph{against} the flow rather than into it.
+What the drift reward changes is not how much inventory the maker holds but
+whether it is aiming at a position or resisting one.
 \end{remark}
 
 \subsection{Fast-Alpha Numerical Study}
@@ -2755,17 +2741,10 @@ approaches the \(\pm60\) grid bound, while every state-dependent policy
 concentrates near zero.  The drift reward is what splits the distribution: in
 the martingale toy model all four densities peak at \(q=0\), whereas once
 \(q\alphabar(i)\) enters the alpha-using policies turn \emph{bimodal}, with
-modes near \(\pm8\) for the Alpha/\(I\)-aware RHJB and \(\pm10\) to
-\(\pm11\) for the body cubic and a dip of \(4\%\)--\(26\%\) at the origin.
-That is the deliberate directional inventory of
-Remark~\ref{rem:why_carry_inventory} seen as a distribution rather than as the
-single number \(\E|Q_t|\), which widens from \(5.5\) to \(7.2\) in the
-fast-alpha study and from \(5.7\) to \(10.8\) in the regime study.  The origin
-is transit rather than a resting point: turning the book from \(+8\) to
-\(-8\) means \(16\) units at a realized \(\approx0.37\) fills per unit time,
-of the same order as the imbalance half-life \(\log2/\beta\approx55\), and the
-Alpha/\(I\)-aware policy accordingly spends \(\Prob(|Q_t|\le2)=0.160\) of its
-life near flat against \(0.503\) at the modes.  A single hump at zero says
+modes near \(\pm8\) to \(\pm11\) and a shallow dip at the origin
+(Remark~\ref{rem:why_carry_inventory}).  The origin is transit rather than a
+resting point, and turning the book over takes of the order of the imbalance
+half-life, which is why the dip is shallow.  A single hump at zero says
 inventory is a cost to be reverted; two humps say it is a position, and flat is
 the least attractive place to be.}
 \label{fig:lifetime_inventory_distributions}
